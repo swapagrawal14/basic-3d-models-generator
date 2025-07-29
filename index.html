@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CanvasAI Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^0.12.0",
+    "three": "https://esm.sh/three@^0.164.0",
+    "three/addons/": "https://esm.sh/three@^0.164.0/examples/jsm/",
+    "three/": "https://esm.sh/three@^0.178.0/"
+  }
+}
+</script>
+    <script type="module" src="index.tsx"></script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="api-key-modal" class="api-key-modal">
+        <div class="modal-content">
+            <h2>Enter Your Gemini API Key</h2>
+            <p>To use CanvasAI Studio, please provide your own Google Gemini API key. Your key will be saved in your browser's local storage for future visits.</p>
+            <input type="password" id="api-key-input" placeholder="Your Gemini API Key" autocomplete="off">
+            <button id="save-api-key-btn">Save and Start Creating</button>
+        </div>
+    </div>
+
+    <div class="container">
+      <aside class="sidebar">
+        <header>
+          <div class="header-content">
+            <h1>CanvasAI Studio</h1>
+            <button id="settings-btn" class="settings-btn" title="API Key Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#616161"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+            </button>
+          </div>
+          <p>
+            Describe a 3D scene using natural language. The AI will generate it
+            for you.
+          </p>
+        </header>
+        <div class="prompt-group">
+          <label for="prompt-input">Your Prompt</label>
+          <textarea
+            id="prompt-input"
+            rows="4"
+            placeholder="e.g., A tranquil scene with a large red sphere floating above a wide blue plane..."
+          ></textarea>
+        </div>
+        <div class="image-upload-group">
+            <label>Upload an Image (Optional)</label>
+            <div id="image-preview" class="image-preview" style="display: none;">
+              <img id="preview-image" src="#" alt="Image preview" />
+              <button id="remove-image-btn" class="remove-image-btn">&times;</button>
+            </div>
+            <input type="file" id="image-upload-input" style="display: none;" accept="image/png, image/jpeg, image/webp">
+            <button id="image-upload-btn" class="upload-btn">
+                Select Image
+            </button>
+        </div>
+        <div class="button-group">
+          <button id="generate-button">
+            <span class="button-text">Generate</span>
+            <div class="spinner" style="display: none;"></div>
+          </button>
+          <div class="download-dropdown">
+            <button id="download-toggle-button" class="download-button" disabled>Download</button>
+            <div id="download-options" class="download-options">
+              <a href="#" id="download-gltf">Download .gltf</a>
+              <a href="#" id="download-obj">Download .obj</a>
+              <a href="#" id="download-stl">Download .stl</a>
+            </div>
+          </div>
+        </div>
+        <div id="error-message" class="error-message" aria-live="assertive"></div>
+      </aside>
+      <main class="canvas-container">
+        <canvas id="c"></canvas>
+      </main>
+    </div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

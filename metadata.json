@@ -1,0 +1,5 @@
+{
+  "name": "Basic 3d models Generator",
+  "description": "Generate basic 3d models from prompts or images",
+  "requestFramePermissions": []
+}
